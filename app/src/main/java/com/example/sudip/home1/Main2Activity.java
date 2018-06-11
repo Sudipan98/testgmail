@@ -46,7 +46,7 @@ public class Main2Activity extends AppCompatActivity {
                 }
             }
         });
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+      /*  GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
         if (acct != null) {
             String personName = acct.getDisplayName();
             String personGivenName = acct.getGivenName();
@@ -56,7 +56,7 @@ public class Main2Activity extends AppCompatActivity {
             Uri personPhoto = acct.getPhotoUrl();
             TextView t1 = (TextView) findViewById(R.id.textView);
             t1.setText(personName);
-        }
+        }*/
     }
   /*  @Override
     protected void onStart()
@@ -81,33 +81,43 @@ public class Main2Activity extends AppCompatActivity {
         if (requestCode == 2) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
+            Log.d(" req code", " get 2");
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
+            Log.d(" req code", " get 2if");
         }
     }
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        Log.d(" handleSignin ", " in ");
         try {
+            Log.d(" try ", " in ");
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             Toast.makeText(getApplicationContext(), "Found", Toast.LENGTH_SHORT).show();
+            //Log.d(" data ",account);
             // Signed in successfully, show authenticated UI.
             //updateUI(account);
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
+            /*GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
             if (acct != null) {
                 String personName = acct.getDisplayName();
                 String personGivenName = acct.getGivenName();
                 String personFamilyName = acct.getFamilyName();
                 String personEmail = acct.getEmail();
                 String personId = acct.getId();
-                Uri personPhoto = acct.getPhotoUrl();
-                TextView t1 = (TextView) findViewById(R.id.textView);
-                t1.setText(personName);
-            }
+                Log.d(" name ",personName);
+                //Uri personPhoto = acct.getPhotoUrl();
+                //TextView t1 = (TextView) findViewById(R.id.textView);
+                //t1.setText(personName);
+            }else {
+                Log.d(" outside if ", "not in if");
+            }*/
+
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
             //Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
-            createUpdateUiHandler();
+            //createUpdateUiHandler();
+            Log.d(" catch ", " in ");
         }
     }
 
